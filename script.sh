@@ -9,12 +9,12 @@ echo "parametr name is $paramertName"
 
 echo $DIRSTACK
 
-if [[ "$scriptName" -eq  1231 ]]
+if [[ paramertName -eq  qwer ]]
     then
-        echo "fail"
+        echo "success"
+        exit 0
     else
-      echo "success"
-      echo $scriptName
+      echo "fail"
+      exit 1
 fi
 
-exit 0
