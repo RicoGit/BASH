@@ -9,7 +9,7 @@ echo "parametr name is $paramertName"
 
 echo $DIRSTACK
 
-if [[ paramertName -eq  qwer ]]
+if [ paramertName -eq  qwer ]
     then
         echo "success"
         exit 0
