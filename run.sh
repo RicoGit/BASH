@@ -2,7 +2,7 @@
 
 
 
-# path to tomcat
+# path to your tomcat
 tomcat_home=/home/rico/WebDev/haulmont/tomcat
 # default site log
 siteName=addlee
@@ -16,7 +16,7 @@ echo '##########################################################################
 
 function startTomcat {
      echo '    INFO:    Start Tomcat server'
-     "$tomcat_home/bin/startup.sh"
+#     "$tomcat_home/bin/startup.sh"
 }
 
 function stopTomcat {
@@ -30,9 +30,27 @@ function killAllProcess {
     exit 0
 }
 
+function openLogs {
+
+    dateNow=test date '+%x'
+    dateOfCreationLogFile=test date -r "$tomcat_home/logs/$siteName/app.log" '+%x'
+
+    if [ 0 -eq "$(ps x | grep -E 'tail -f .*\.(log|out)' | wc -l)" ]
+        then
+            echo '    INFO:    Open terminal with logs'
+            gnome-terminal --tab -t 'catalina' \
+                    -e "tail -f $tomcat_home/logs/catalina.out" \
+                    --tab -t "$siteName" \
+                    -e "tail -f $tomcat_home/logs/$siteName/app.log"
+        else
+            echo '    INFO:    Skip show log cause log is already running'
+    fi
+}
+
+    # -- if paramert == x killAllProcesses
     [ "$1" = 'x' ] && killAllProcess
 
-    # -- init siteName from first param
+    # -- param is site name, write to siteName variable
     if [ -n "$1" ]
         then siteName=$1
     fi
@@ -46,16 +64,21 @@ function killAllProcess {
             startTomcat
     fi
 
+      # вариант 1
+    # -- check the existence of the log ( siteName/app.log )
+#    dateNow=test date '+%x'
+#    dateOfCreationLogFile=test date -r "$tomcat_home/logs/$siteName/app.log" '+%x'
+#    if [ "$date" = "$dateOfCreationLogFile" ]
+#        then
+#           echo '    INFO:   "app.log" already was created today, opening logs...'
+#           openLogs
+#        else
+#            echo 'wait log creation'
+#    fi
 
-    # -- show logs
-    if [ 0 -eq "$(ps x | grep -E 'tail -f .*\.(log|out)' | wc -l)" ]
-        then
-            echo '    INFO:    Open terminal with logs'
-            gnome-terminal --tab -t 'catalina' \
-                    -e "tail -f $tomcat_home/logs/catalina.out" \
-                    --tab -t "$siteName" \
-                    -e "tail -f $tomcat_home/logs/$siteName/app.log"
-        else
-            echo '    INFO:    Skip show log cause log is already running'
-    fi
-    exit 0
+   # -- вариант 2
+
+    openLogs
+
+
+exit 0
