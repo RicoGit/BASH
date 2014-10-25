@@ -18,10 +18,14 @@ echo '	*** *** Add repositories'
 add-apt-repository -y ppa:webupd8team/java 
 # sublime
 add-apt-repository -y ppa:webupd8team/sublime-text-3 
+# classical menu
+sudo apt-add-repository ppa:diesch/testing
 # update
 apt-get -y update 
 
 echo '	*** Install oracle JDK 7, 8'
+# openJdk need for idea (nice font)
+apt-get install openjdk-7-jdk 
 apt-get -y install oracle-java7-installer
 apt-get -y install oracle-java8-installer
 # make java 7 as default

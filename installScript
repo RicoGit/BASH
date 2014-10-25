@@ -3,8 +3,15 @@
 
 echo '	***	*** Install packages start.'
 
+
+chmod 777 -R /opt
+
 echo '	*** Delete default games'
 apt-get -y purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy onboard
+echo '	*** Delete amason, zeitgeist, orca '
+apt-get purge unity-webapps-common
+apt-get purge zeitgeist zeitgeist-core zeitgeist-datahub
+apt-get purge gnome-orca
 
 # удаляет неудалённые зависимости от уже удалённых пакетов
 apt-get -y autoremove
@@ -14,20 +21,22 @@ apt-get -y autoclean
 
 echo '	*** *** Add repositories'
 # prepare installing for skype
-sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
 # prepare installing for chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+# ubuntu tweak
+add-apt-repository -y ppa:tualatrix/ppa 
 
 # update 
-sudo apt-get -y update
+apt-get -y update
 
 
 echo '	*** Install skype'
-sudo apt-get -y install skype && sudo apt-get -f install
+apt-get -y install skype && apt-get -f install
 
 echo '	*** Fix skype layout problem'
-sudo apt-get -y install gtk2-engines-murrine:i386 gtk2-engines-pixbuf:i386 sni-qt:i386
+apt-get -y install gtk2-engines-murrine:i386 gtk2-engines-pixbuf:i386 sni-qt:i386
 
 echo '	*** Skype fonts fix - remove fonts-nanum'
 apt-get -y purge fonts-nanum  
@@ -45,8 +54,28 @@ echo '	*** Install Compiz '
 apt-get -y install compizconfig-settings-manager compiz-plugins
 
 echo '	*** Install nautilus-open-terminal'
-apt-get install nautilus-open-terminal 
+apt-get -y install nautilus-open-terminal 
+
+echo '	*** Install classicmenu-indicator'
+apt-get -y install classicmenu-indicator
+
+echo '	*** Install dconf-tools'		
+apt-get -y install dconf-tools
+
+echo '	*** Install codecs'
+apt-get install ubuntu-restricted-extras
+
+echo '	*** Install ubuntu-tweak'
+apt-get -y install ubuntu-tweak
+apt-get install unity-tweak-tool
+
+# echo '	***	Install synaptic' 
+# apt-get install synaptic
 
 echo '	*** Install dropbox'
-sudo apt-get -y install nautilus-dropbox
+apt-get -y install nautilus-dropbox
 
+# start use swap only if RAM is used fro 90%
+echo '\nvm.swappiness=10 \n' >> /etc/sysctl.conf
+
+# http://www.linuxrussia.com/2014/04/ubuntu-1404.html
