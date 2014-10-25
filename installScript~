@@ -11,13 +11,9 @@ apt-get -y autoremove
 # для очистки от пакетов .deb которые больше не используются
 apt-get -y autoclean
 
-
 echo '	*** *** Add repositories'
-# prepare installing for skype
+# skype
 sudo add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
-# prepare installing for chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
-sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 
 # update 
 sudo apt-get -y update
@@ -33,6 +29,9 @@ echo '	*** Skype fonts fix - remove fonts-nanum'
 apt-get -y purge fonts-nanum  
 
 echo '	*** Install Chrome'
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get -y update
 apt-get -y install google-chrome-stable
 
 echo '	*** Install vlc'
@@ -46,7 +45,3 @@ apt-get -y install compizconfig-settings-manager compiz-plugins
 
 echo '	*** Install nautilus-open-terminal'
 apt-get install nautilus-open-terminal 
-
-echo '	*** Install dropbox'
-sudo apt-get -y install nautilus-dropbox
-

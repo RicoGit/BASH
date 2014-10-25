@@ -24,13 +24,11 @@ apt-get -y update
 echo '	*** Install oracle JDK 7, 8'
 apt-get -y install oracle-java7-installer
 apt-get -y install oracle-java8-installer
-# make java 7 as default
-update-java-alternatives -s java-7-oracle
 
 echo '	*** Install groovy 2.3.7'
-wget -P /opt http://dl.bintray.com/groovy/maven/groovy-sdk-2.3.7.zip
-unzip /opt/groovy-sdk-2.3.7 -d /opt
-mv /opt/groovy-2.3.7 /opt/groovy
+wget /opt http://dl.bintray.com/groovy/maven/groovy-src-2.3.7.zip
+unzip /opt/groovy-src-2.3.7.zip
+mv /opt/groovy-src-2.3.7 /opt/groovy
 echo -e "\n export GROOVY_HOME=/opt/groovy" >> ~/.profile
 
 echo '	*** Install Git and giggle'
@@ -59,7 +57,7 @@ isInstalled openvpn
 # dir for my bash and groovy scripts
 mkdir /opt/myscript
 # add all path (groovy, gradle, idea, myscript)
-echo -e "\n export PATH=$PATH:/opt/groovy/bin:/opt/gradle/bin:/opt/idea/bin:/opt/myscript" >> ~/.profile
+echo -e "\n export PATH=$PATH:$GROOVY_HOME/bin:$GRADLE_HOME/bin:/opt/idea/bin:/opt/myscript" >> ~/.profile
 
 # echo '	*** Install gyazo
 # apt-get -y install ruby imagemagick
@@ -77,4 +75,3 @@ echo '	*** make sublime text default editor'
 sed -i.bak s/gedit.desktop/sublime_text.desktop/g /usr/share/applications/defaults.list
 
 apt-get -y autoremove
-source ~/.profile
