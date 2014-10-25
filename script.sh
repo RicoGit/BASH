@@ -1,20 +1,18 @@
 #!/bin/bash
 
 
-scriptName=$0
-paramertName=$1
+# function isInstalled {
+# 	echo "$1 is already installed.Skip installation."
+# 	[ 1 -eq "$(dpkg -l | grep -c $1)" ] && echo 'true'
+# }
 
-echo "scipt name is $scriptName"
-echo "parametr name is $paramertName"
+# isInstalled rdesktop
 
-echo $DIRSTACK
+echo '
 
-if [ paramertName -eq  qwer ]
-    then
-        echo "success"
-        exit 0
-    else
-      echo "fail"
-      exit 1
-fi
+XKBMODEL="pc105"
+XKBLAYOUT="us,ru"
+XKBVARIANT=","
+XKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"
 
+' > /etc/default/keyboard
