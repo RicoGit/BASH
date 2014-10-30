@@ -29,8 +29,7 @@ apt-get install openjdk-7-jdk
 apt-get -y install oracle-java7-installer
 apt-get -y install oracle-java8-installer
 # make java 7 as default
-update-java-alternatives -s java-7-oracle
-
+update-java-alternatives -s java-7-oracl
 echo '	*** Install groovy 2.3.7'
 wget -P /opt http://dl.bintray.com/groovy/maven/groovy-sdk-2.3.7.zip
 unzip /opt/groovy-sdk-2.3.7 -d /opt

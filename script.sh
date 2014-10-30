@@ -1,18 +1,28 @@
 #!/bin/bash
 
+echo 'test'
 
-# function isInstalled {
-# 	echo "$1 is already installed.Skip installation."
-# 	[ 1 -eq "$(dpkg -l | grep -c $1)" ] && echo 'true'
-# }
+# wget -P /opt https://release.sublimegit.net/SublimeGit.zip
+# unzip /opt/SublimeGit.zip -d ~/.config/sublime-text-3/Packages
 
-# isInstalled rdesktop
+# path to your tomcat
+tomcat_home=/home/rico/webdev/haulmont/tomcat
+# default site log
+siteName=addlee
 
-echo '
 
-XKBMODEL="pc105"
-XKBLAYOUT="us,ru"
-XKBVARIANT=","
-XKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"
+ 	dateNow=`date "+%Y-%m-%d"`
+    dateOfCreationLogFile=`date -r "$tomcat_home/logs/$siteName/app.log" "+%Y-%m-%d"`
 
-' > /etc/default/keyboard
+    if [ "$dateNow" == "$dateOfCreationLogFile" ]
+        then 
+        	echo "$siteName/app.log exists"
+        else
+        	echo "create for today $siteName/app.log"
+        	mv "$tomcat_home/logs/$siteName/app.log" "app.log.$dateNow" 
+        	touch app.log    
+    fi
+
+echo 'done'	
+echo "$dateNow"
+echo "$dateOfCreationLogFile"	

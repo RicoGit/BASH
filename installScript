@@ -75,7 +75,11 @@ apt-get install unity-tweak-tool
 echo '	*** Install dropbox'
 apt-get -y install nautilus-dropbox
 
+
+echo '	*** Custom settings'
 # start use swap only if RAM is used fro 90%
 echo '\nvm.swappiness=10 \n' >> /etc/sysctl.conf
+# всегда показывать адресснуюю строку в наутилусе
+gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 
 # http://www.linuxrussia.com/2014/04/ubuntu-1404.html
