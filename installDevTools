@@ -79,5 +79,17 @@ apt-mark hold libsvn1 subversion
 echo '	*** make sublime text default editor'
 sed -i.bak s/gedit.desktop/sublime_text.desktop/g /usr/share/applications/defaults.list
 
+# решение проблемы с неработающими хоткеями в idea
+
+IDEA_HOME=/opt/idea
+wget -P "$IDEA_HOME/lib" https://github.com/zheludkovm/LinuxJavaFixes/blob/master/build/LinuxJavaFixes-1.0.0-SNAPSHOT.jar?raw=true
+mv "$IDEA_HOME/lib/LinuxJavaFixes-1.0.0-SNAPSHOT.jar?raw=true" "$IDEA_HOME/lib/LinuxJavaFixes-1.0.0-SNAPSHOT.jar"
+wget -P "$IDEA_HOME/lib" https://github.com/zheludkovm/LinuxJavaFixes/blob/master/build/javassist-3.12.1.GA.jar?raw=true
+mv "$IDEA_HOME/lib/javassist-3.12.1.GA.jar?raw=true" "$IDEA_HOME/lib/javassist-3.12.1.GA.jar"
+echo '
+### hotkeys fix ##
+-javaagent:'"$IDEA_HOME"'/lib/LinuxJavaFixes-1.0.0-SNAPSHOT.jar
+### end of hotkeys fix2 ###' >> "$IDEA_HOME/bin/idea64.vmoptions"
+
 apt-get -y autoremove
 source ~/.profile

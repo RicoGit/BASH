@@ -20,20 +20,25 @@ apt-get -y autoclean
 
 
 echo '	*** *** Add repositories'
-# prepare installing for skype
+# skype repository
 add-apt-repository -y "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
-# prepare installing for chrome
+# chrome repository
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - 
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-# ubuntu tweak
+# ubuntu tweak repository
 add-apt-repository -y ppa:tualatrix/ppa 
+# keepass repository
+sudo apt-add-repository ppa:jtaylor/keepass
+
 
 # update 
+echo '	*** Upate'
 apt-get -y update
 
 
 echo '	*** Install skype'
 apt-get -y install skype && apt-get -f install
+
 
 echo '	*** Fix skype layout problem'
 apt-get -y install gtk2-engines-murrine:i386 gtk2-engines-pixbuf:i386 sni-qt:i386
@@ -69,17 +74,32 @@ echo '	*** Install ubuntu-tweak'
 apt-get -y install ubuntu-tweak
 apt-get install unity-tweak-tool
 
-# echo '	***	Install synaptic' 
-# apt-get install synaptic
-
 echo '	*** Install dropbox'
 apt-get -y install nautilus-dropbox
 
+echo '	*** Install mail@cloud'
+wget -P /opt/cloud https://desktopcloud.cdnmail.ru/linux/amd64/cloud 
+echo '	* Add to autostart mail@cloud'
+echo '[Desktop Entry]
+Type=Application
+Exec=/opt/cloud/cloud
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ru]=mail@cloud
+Name=mail@cloud' >> ~/.config/autostart/cloud.desktop
+
+echo '	*** Install keepass2'
+sudo apt-get install keepass2
 
 echo '	*** Custom settings'
 # start use swap only if RAM is used fro 90%
 echo '\nvm.swappiness=10 \n' >> /etc/sysctl.conf
 # всегда показывать адресснуюю строку в наутилусе
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
+# при неработающий на русской раскладке hotkeys
+sudo apt-get install ibus-m17n
+# открыть ibus и поставить "русский - kbd (m17n)"
+ibus-setup 
 
 # http://www.linuxrussia.com/2014/04/ubuntu-1404.html
