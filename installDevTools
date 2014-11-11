@@ -42,6 +42,9 @@ apt-get -y install git giggle
 echo '	*** Install Svn'
 apt-get -y install subversion
 
+echo '	*** Install Maven'
+apt-get install maven
+
 echo '	*** Install Sublime text 3'
 apt-get -y install sublime-text-installer
 
