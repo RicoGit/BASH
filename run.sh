@@ -15,17 +15,17 @@ siteName=addlee
 echo '##########################################################################'
 
 function startTomcat {
-     echo '     INFO:    Start Tomcat server'
+     echo '     INFO:   Start Tomcat server'
     "$tomcat_home/bin/startup.sh"
 }
 
 function stopTomcat {
-     echo '     INFO:    Stop Tomcat server'
+     echo '     INFO:   Stop Tomcat server'
      kill -9 $(ps aux | grep '[t]omcat.*org.apache.catalina.startup.Bootstrap start' | awk '{printf $2}')
 }
 
 function killAllProcess {
-    echo '      INFO: Stop Tomcat with all logs'
+    echo '      INFO:   Stop Tomcat with all logs'
     kill -9 $(ps aux | grep '[t]omcat' | awk '{printf $2" "}')
     exit 0
 }
@@ -73,7 +73,7 @@ function openLogs {
         then 
             echo "      INFO:   $siteName/app.log exists"
         else
-            echo "      INFO:   create for today $siteName/app.log"
+            echo "      INFO:   Create for today $siteName/app.log"
             # save old log
             mv "$tomcat_home/logs/$siteName/app.log" "$tomcat_home/logs/$siteName/app.log.$dateOfCreationLogFile" 
             # create new

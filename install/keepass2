@@ -1,0 +1,6 @@
+
+echo '	*** Install keepass2'
+
+apt-add-repository ppa:jtaylor/keepass
+apt-get -y update
+apt-get install keepass2

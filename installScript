@@ -28,7 +28,7 @@ sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt
 # ubuntu tweak repository
 add-apt-repository -y ppa:tualatrix/ppa 
 # keepass repository
-sudo apt-add-repository ppa:jtaylor/keepass
+sudo apt-add-repository -y ppa:jtaylor/keepass
 
 
 # update 
@@ -90,7 +90,7 @@ Name[ru]=mail@cloud
 Name=mail@cloud' >> ~/.config/autostart/cloud.desktop
 
 echo '	*** Install keepass2'
-sudo apt-get install keepass2
+sudo apt-get install -y keepass2
 
 echo '	*** Custom settings'
 # start use swap only if RAM is used fro 90%
