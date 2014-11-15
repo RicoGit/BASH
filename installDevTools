@@ -54,6 +54,9 @@ unzip /opt/gradle-2.1-all.zip -d /opt
 mv /opt/gradle-2.1 /opt/gradle
 echo -e "\n export GRADLE_HOME=/opt/gradle" >> ~/.profile
 
+echo '  *** Insall curl'
+apt-get -y install curl
+
 echo '	*** Install rdesktop'
 isInstalled rdesktop
 [ "$pkdgInstalled" == 'false' ] && apt-get -y install rdesktop
@@ -81,6 +84,7 @@ apt-mark hold libsvn1 subversion
 
 echo '	*** make sublime text default editor'
 sed -i.bak s/gedit.desktop/sublime_text.desktop/g /usr/share/applications/defaults.list
+
 
 # решение проблемы с неработающими хоткеями в idea
 
