@@ -29,7 +29,8 @@ apt-get install openjdk-7-jdk
 apt-get -y install oracle-java7-installer
 apt-get -y install oracle-java8-installer
 # make java 7 as default
-update-java-alternatives -s java-7-oracl
+update-java-alternatives -s java-7-oracle
+
 echo '	*** Install groovy 2.3.7'
 wget -P /opt http://dl.bintray.com/groovy/maven/groovy-sdk-2.3.7.zip
 unzip /opt/groovy-sdk-2.3.7 -d /opt
@@ -64,6 +65,16 @@ isInstalled rdesktop
 echo '	*** Install openVpn'
 isInstalled openvpn
 [ "$pkdgInstalled" == 'false' ] && apt-get -y install openvpn
+
+echo '	***Install nodejs'
+apt-get install -y nodejs
+echo '	***Install npm'
+apt-get install -y npm
+
+echo '	***Install dia'
+apt-get -y install dia
+
+# todo run ./mongoDb
 
 # dir for my bash and groovy scripts
 mkdir /opt/myscript

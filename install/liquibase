@@ -1,0 +1,14 @@
+#!/bin/bash
+
+wget -O liquibase.tar.gz "http://downloads.sourceforge.net/project/liquibase/Liquibase%20Core/liquibase-3.3.3-bin.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fliquibase%2F%3Fsource%3Dtyp_redirect&ts=1432617153&use_mirror=cznic"
+mkdir /opt/liquibase
+tar vxzf liquibase.tar.gz -C /opt/liquibase
+rm liquibase.tar.gz
+
+cd ~/
+echo '
+export LIQUIBASE_HOME=/opt/liquibase 
+export PATH=$PATH:$LIQUIBASE_HOME
+' >> .profile
+source .profile
+
