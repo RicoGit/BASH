@@ -68,11 +68,6 @@ echo '	*** Install openVpn'
 isInstalled openvpn
 [ "$pkdgInstalled" == 'false' ] && apt-get -y install openvpn
 
-echo '	***Install nodejs'
-apt-get install -y nodejs
-echo '	***Install npm'
-apt-get install -y npm
-
 echo '	***Install dia'
 apt-get -y install dia
 
