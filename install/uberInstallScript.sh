@@ -3,15 +3,14 @@
 
 echo '	***	*** Install packages start.'
 
-
 chmod 777 -R /opt
 
 echo '	*** Delete default games'
 apt-get -y purge aisleriot gnome-sudoku mahjongg ace-of-penguins gnomine gbrainy onboard
 echo '	*** Delete amason, zeitgeist, orca '
-apt-get purge unity-webapps-common
-apt-get purge zeitgeist zeitgeist-core zeitgeist-datahub
-apt-get purge gnome-orca
+apt-get -y purge unity-webapps-common
+apt-get -y purge zeitgeist zeitgeist-core zeitgeist-datahub
+apt-get -y purge gnome-orca
 
 # удаляет неудалённые зависимости от уже удалённых пакетов
 apt-get -y autoremove
@@ -68,11 +67,11 @@ echo '	*** Install dconf-tools'
 apt-get -y install dconf-tools
 
 echo '	*** Install codecs'
-apt-get install ubuntu-restricted-extras
+apt-get -y install ubuntu-restricted-extras
 
 echo '	*** Install ubuntu-tweak'
 apt-get -y install ubuntu-tweak
-apt-get install unity-tweak-tool
+apt-get -y install unity-tweak-tool
 
 echo '	*** Install dropbox'
 apt-get -y install nautilus-dropbox
@@ -90,7 +89,7 @@ Name[ru]=mail@cloud
 Name=mail@cloud' >> ~/.config/autostart/cloud.desktop
 
 echo '	*** Install keepass2'
-sudo apt-get install -y keepass2
+sudo apt-get -y install -y keepass2
 
 echo '	*** Custom settings'
 # start use swap only if RAM is used fro 90%
@@ -98,8 +97,8 @@ echo '\nvm.swappiness=10 \n' >> /etc/sysctl.conf
 # всегда показывать адресснуюю строку в наутилусе
 gsettings set org.gnome.nautilus.preferences always-use-location-entry true
 # при неработающий на русской раскладке hotkeys
-sudo apt-get install ibus-m17n
+#sudo apt-get install ibus-m17n
 # открыть ibus и поставить "русский - kbd (m17n)"
-ibus-setup 
+#ibus-setup 
 
 # http://www.linuxrussia.com/2014/04/ubuntu-1404.html

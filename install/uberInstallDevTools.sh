@@ -25,23 +25,23 @@ apt-get -y update
 
 echo '	*** Install oracle JDK 7, 8'
 # openJdk need for idea (nice font)
-apt-get install openjdk-7-jdk 
-apt-get -y install oracle-java7-installer
+apt-get -y install openjdk-7-jdk 
+#apt-get -y install oracle-java7-installer
 apt-get -y install oracle-java8-installer
 # make java 7 as default
-update-java-alternatives -s java-7-oracle
+update-java-alternatives -s java-8-oracle
 
-echo '	*** Install groovy 2.3.7'
-wget -P /opt http://dl.bintray.com/groovy/maven/groovy-sdk-2.3.7.zip
-unzip /opt/groovy-sdk-2.3.7 -d /opt
-mv /opt/groovy-2.3.7 /opt/groovy
-echo -e "\n export GROOVY_HOME=/opt/groovy" >> ~/.profile
+#echo '	*** Install groovy 2.3.7'
+#wget -P /opt http://dl.bintray.com/groovy/maven/groovy-sdk-2.3.7.zip
+#unzip /opt/groovy-sdk-2.3.7 -d /opt
+#mv /opt/groovy-2.3.7 /opt/groovy
+#echo -e "\n export GROOVY_HOME=/opt/groovy" >> ~/.profile
 
 echo '	*** Install Git and giggle'
 apt-get -y install git giggle
 
-echo '	*** Install Svn'
-apt-get -y install subversion
+#echo '	*** Install Svn'
+#apt-get -y install subversion
 
 echo '	*** Install Maven'
 apt-get install maven
@@ -81,17 +81,6 @@ mkdir /opt/myscript
 # add all path (groovy, gradle, idea, myscript)
 echo -e "\n export PATH=$PATH:/opt/groovy/bin:/opt/gradle/bin:/opt/idea/bin:/opt/myscript" >> ~/.profile
 
-# echo '	*** Install gyazo
-# apt-get -y install ruby imagemagick
-# wget https://github.com/downloads/kambara/Gyazo-for-Linux/gyazo_1.0-1_all.deb -P /opt
-# dpkg -i /opt/gyazo_1.0-1_all.deb
-# sed -i.bak s/gyazo.com/screenshot.haulmont.com/g /usr/bin/gyazo
-# sed -i.bak s/upload.cgi/upload.php/g /usr/bin/gyazo
-
-echo '	*** Revert old subersionn version to ubuntu 14 ****	'
-sudo sh -c "echo '\ndeb http://us.archive.ubuntu.com/ubuntu precise main' >> /etc/apt/sources.list"
-apt-get -y -t precise install libsvn1 subversion
-apt-mark hold libsvn1 subversion
 
 echo '	*** make sublime text default editor'
 sed -i.bak s/gedit.desktop/sublime_text.desktop/g /usr/share/applications/defaults.list

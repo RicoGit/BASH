@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#depricated use cloudera_hadoop_spark.sh
+
 addgroup hadoop
 adduser --ingroup hadoop hdfs
 adduser hdfs sudo
