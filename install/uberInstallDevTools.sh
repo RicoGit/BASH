@@ -14,6 +14,8 @@ echo '	***	*** Install developers tools start ***'
 
 
 echo '	*** *** Add repositories'
+# openJdk8
+add-apt-repository ppa:openjdk-r/ppa
 # java oracle
 add-apt-repository -y ppa:webupd8team/java 
 # sublime
@@ -25,7 +27,7 @@ apt-get -y update
 
 echo '	*** Install oracle JDK 7, 8'
 # openJdk need for idea (nice font)
-apt-get -y install openjdk-7-jdk 
+apt-get -y install openjdk-8-jdk 
 #apt-get -y install oracle-java7-installer
 apt-get -y install oracle-java8-installer
 # make java 7 as default

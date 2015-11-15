@@ -72,6 +72,8 @@ apt-get -y install ubuntu-restricted-extras
 echo '	*** Install ubuntu-tweak'
 apt-get -y install ubuntu-tweak
 apt-get -y install unity-tweak-tool
+# for disabling caps lock and other cases
+apt-get -y install gnome-tweak-tool
 
 echo '	*** Install dropbox'
 apt-get -y install nautilus-dropbox
